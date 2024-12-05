@@ -2,19 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Setup') {
             steps {
-                git branch: 'main', url: 'https://github.com/jeahora/Teste-API-EBAC-Atividade.git'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
+                git branch: 'main', url: 'https://github.com/EBAC-QE/ebac-cypress-samples.git'
                 sh 'npm install'
             }
         }
-        stage('Run Tests') {
+        stage('Test') {
             steps {
-                sh 'npm test'
+                sh 'NO_COLOR=1 npm test'
             }
         }
     }
